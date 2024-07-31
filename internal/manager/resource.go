@@ -15,8 +15,6 @@
 package manager
 
 import (
-	"fmt"
-
 	v1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/labels"
 	corev1listers "k8s.io/client-go/listers/core/v1"
@@ -61,16 +59,7 @@ func (rm *ResourceManager) GetConfigMap(name, namespace string) (*v1.ConfigMap, 
 
 // GetSecret retrieves the specified secret from Kubernetes.
 func (rm *ResourceManager) GetSecret(name, namespace string) (*v1.Secret, error) {
-	fmt.Println("BREAKPOINT DENTRO GET SECRET")
-	fmt.Println(name)
-	fmt.Println(namespace)
-	beforesecret, _ := rm.secretLister.Secrets(namespace).List(labels.Everything())
-	fmt.Println(beforesecret)
-	secret, err := rm.secretLister.Secrets(namespace).Get(name)
-	rm.secretLister.Secrets(namespace).Get(name)
-	fmt.Println(secret)
-	fmt.Println(err)
-	return secret, err
+	return rm.secretLister.Secrets(namespace).Get(name)
 }
 
 // ListServices retrieves the list of services from Kubernetes.

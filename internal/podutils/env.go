@@ -233,7 +233,11 @@ loop:
 			// This will control whether we fail when unable to read the secret.
 			optional := ef.Optional != nil && *ef.Optional
 			// Try to grab the referenced secret.
+			fmt.Println("BREAKPOINT HIT")
 			s, err := rm.GetSecret(ef.Name, pod.Namespace)
+			fmt.Println(s, err)
+			c, err := rm.GetConfigMap("example-config", pod.Namespace)
+			fmt.Println(c, err)
 			if err != nil {
 				// We couldn't fetch the secret.
 				// However, if the secret reference is optional we should not fail.
