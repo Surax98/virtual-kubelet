@@ -472,6 +472,7 @@ func (q *Queue) handleQueueItemObject(ctx context.Context, qi *queueItem) error 
 		delay, err = q.retryFunc(ctx, qi.key, qi.requeues+1, qi.originallyAdded, err)
 		if err == nil {
 			// Put the item back on the work Queue to handle any transient errors.
+			log.G(ctx).Warn("BREAKPOINT HIT")
 			log.G(ctx).WithError(originalError).Warnf("requeuing %q due to failed sync", qi.key)
 			newQI := q.insert(ctx, qi.key, true, delay)
 			newQI.requeues = qi.requeues + 1
