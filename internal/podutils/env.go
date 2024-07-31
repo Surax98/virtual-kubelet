@@ -239,7 +239,6 @@ loop:
 				// However, if the secret reference is optional we should not fail.
 				if optional {
 					if errors.IsNotFound(err) {
-						log.G(ctx).Info("BREAKPOINT HIT")
 						recorder.Eventf(pod, corev1.EventTypeWarning, ReasonOptionalSecretNotFound, "secret %q not found", ef.Name)
 					} else {
 						log.G(ctx).Warnf("failed to read secret %q: %v", ef.Name, err)
