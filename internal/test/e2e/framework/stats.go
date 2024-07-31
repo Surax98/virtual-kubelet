@@ -4,8 +4,8 @@ import (
 	"context"
 	"encoding/json"
 
-	api "github.com/virtual-kubelet/virtual-kubelet/node/api"
-	stats "github.com/virtual-kubelet/virtual-kubelet/node/api/statsv1alpha1"
+	api "github.com/surax98/virtual-kubelet/node/api"
+	stats "github.com/surax98/virtual-kubelet/node/api/statsv1alpha1"
 	"k8s.io/apimachinery/pkg/util/net"
 )
 

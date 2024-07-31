@@ -25,14 +25,14 @@ import (
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
-	"github.com/virtual-kubelet/virtual-kubelet/cmd/virtual-kubelet/internal/commands/providers"
-	"github.com/virtual-kubelet/virtual-kubelet/cmd/virtual-kubelet/internal/commands/root"
-	"github.com/virtual-kubelet/virtual-kubelet/cmd/virtual-kubelet/internal/commands/version"
-	"github.com/virtual-kubelet/virtual-kubelet/cmd/virtual-kubelet/internal/provider"
-	"github.com/virtual-kubelet/virtual-kubelet/log"
-	logruslogger "github.com/virtual-kubelet/virtual-kubelet/log/logrus"
-	"github.com/virtual-kubelet/virtual-kubelet/trace"
-	"github.com/virtual-kubelet/virtual-kubelet/trace/opencensus"
+	"github.com/surax98/virtual-kubelet/cmd/virtual-kubelet/internal/commands/providers"
+	"github.com/surax98/virtual-kubelet/cmd/virtual-kubelet/internal/commands/root"
+	"github.com/surax98/virtual-kubelet/cmd/virtual-kubelet/internal/commands/version"
+	"github.com/surax98/virtual-kubelet/cmd/virtual-kubelet/internal/provider"
+	"github.com/surax98/virtual-kubelet/log"
+	logruslogger "github.com/surax98/virtual-kubelet/log/logrus"
+	"github.com/surax98/virtual-kubelet/trace"
+	"github.com/surax98/virtual-kubelet/trace/opencensus"
 )
 
 var (

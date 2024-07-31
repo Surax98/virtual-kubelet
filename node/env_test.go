@@ -9,8 +9,8 @@ import (
 
 	"github.com/bombsimon/logrusr/v3"
 	"github.com/sirupsen/logrus"
-	"github.com/virtual-kubelet/virtual-kubelet/log"
-	logruslogger "github.com/virtual-kubelet/virtual-kubelet/log/logrus"
+	"github.com/surax98/virtual-kubelet/log"
+	logruslogger "github.com/surax98/virtual-kubelet/log/logrus"
 	"gotest.tools/assert"
 	is "gotest.tools/assert/cmp"
 	corev1 "k8s.io/api/core/v1"

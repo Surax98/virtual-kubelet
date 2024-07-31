@@ -21,11 +21,11 @@ Add the new /metrics/resource endpoint in the virtual-kubelet to support the met
 ## Motivation
 
 The Kubernetes metrics server now tries to get metrics from the kubelet using the new metrics endpoint [/metrics/resource](https://github.com/kubernetes-sigs/metrics-server/commit/a2d732e5cdbfd93a6ebce221e8df0e8b463eecc6#diff-6e5b914d1403a14af1cc43582a2c9af727113037a3c6a77d8729aaefba084fb5R88),
-while Virtual Kubelet is still exposing the earlier metrics endpoint [/stats/summary](https://github.com/virtual-kubelet/virtual-kubelet/blob/master/node/api/server.go#L90). 
+while Virtual Kubelet is still exposing the earlier metrics endpoint [/stats/summary](https://github.com/surax98/virtual-kubelet/blob/master/node/api/server.go#L90). 
 This causes metrics to break when using virtual kubelet with newer Kubernetes versions (>=1.24). 
 To support the new metrics server, this document proposes adding a new handler to handle the updated metrics endpoint. 
 This will be an additive update, and the old 
-[/stats/summary](https://github.com/virtual-kubelet/virtual-kubelet/blob/master/node/api/server.go#L90) endpoint will still be available to maintain backward compatibility with 
+[/stats/summary](https://github.com/surax98/virtual-kubelet/blob/master/node/api/server.go#L90) endpoint will still be available to maintain backward compatibility with 
 the older metrics server version.
 
 
@@ -168,7 +168,7 @@ type PodMetricsResourceHandlerFunc func(context.Context) ([]*dto.MetricFamily, e
 ### Data
 
 The updated metrics server does not add any new fields to the metrics data but uses the Prometheus textparse series parser to parse and reconstruct the [MetricsBatch](https://github.com/kubernetes-sigs/metrics-server/blob/83b2e01f9825849ae5f562e47aa1a4178b5d06e5/pkg/storage/types.go#L31) data structure.  
-Currently virtual-kubelet is sending data to the server using the [summary](https://github.com/virtual-kubelet/virtual-kubelet/blob/be0a062aec9a5eeea3ad6fbe5aec557a235558f6/node/api/statsv1alpha1/types.go#L24) data structure. The Prometheus text parser expects a series of bytes as in the Prometheus [model.Samples](https://github.com/kubernetes/kubernetes/blob/a93eda9db305611cacd8b6ee930ab3149a08f9b0/vendor/github.com/prometheus/common/model/value.go#L184) data structure, similar to the test [here](https://github.com/prometheus/prometheus/blob/c70d85baed260f6013afd18d6cd0ffcac4339861/model/textparse/promparse_test.go#L31).
+Currently virtual-kubelet is sending data to the server using the [summary](https://github.com/surax98/virtual-kubelet/blob/be0a062aec9a5eeea3ad6fbe5aec557a235558f6/node/api/statsv1alpha1/types.go#L24) data structure. The Prometheus text parser expects a series of bytes as in the Prometheus [model.Samples](https://github.com/kubernetes/kubernetes/blob/a93eda9db305611cacd8b6ee930ab3149a08f9b0/vendor/github.com/prometheus/common/model/value.go#L184) data structure, similar to the test [here](https://github.com/prometheus/prometheus/blob/c70d85baed260f6013afd18d6cd0ffcac4339861/model/textparse/promparse_test.go#L31).
  
 Examples of how the new metrics are defined may be seen in the Kubernetes e2e test that calls the /metrics/resource endpoint [here](https://github.com/kubernetes/kubernetes/blob/a93eda9db305611cacd8b6ee930ab3149a08f9b0/test/e2e_node/resource_metrics_test.go#L76), and the kubelet metrics defined in the Kubernetes/kubelet code [here](https://github.com/kubernetes/kubernetes/blob/master/pkg/kubelet/metrics/collectors/resource_metrics.go) .
  

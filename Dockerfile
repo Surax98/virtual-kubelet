@@ -3,8 +3,8 @@ ARG GOLANG_CI_LINT_VERSION
 FROM golang:1.20 as builder
 ENV PATH /go/bin:/usr/local/go/bin:$PATH
 ENV GOPATH /go
-COPY . /go/src/github.com/virtual-kubelet/virtual-kubelet
-WORKDIR /go/src/github.com/virtual-kubelet/virtual-kubelet
+COPY . /go/src/github.com/surax98/virtual-kubelet
+WORKDIR /go/src/github.com/surax98/virtual-kubelet
 ARG BUILD_TAGS=""
 RUN make VK_BUILD_TAGS="${BUILD_TAGS}" build
 RUN cp bin/virtual-kubelet /usr/bin/virtual-kubelet
