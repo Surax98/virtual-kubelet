@@ -61,13 +61,15 @@ func (rm *ResourceManager) GetConfigMap(name, namespace string) (*v1.ConfigMap, 
 
 // GetSecret retrieves the specified secret from Kubernetes.
 func (rm *ResourceManager) GetSecret(name, namespace string) (*v1.Secret, error) {
-	fmt.Print("BREAKPOINT DENTRO GET SECRET")
-	fmt.Print(name)
-	fmt.Print(namespace)
+	fmt.Println("BREAKPOINT DENTRO GET SECRET")
+	fmt.Println(name)
+	fmt.Println(namespace)
+	beforesecret := rm.secretLister.Secrets(namespace)
+	fmt.Println(beforesecret)
 	secret, err := rm.secretLister.Secrets(namespace).Get(name)
 	rm.secretLister.Secrets(namespace).Get(name)
-	fmt.Print(secret)
-	fmt.Print(err)
+	fmt.Println(secret)
+	fmt.Println(err)
 	return secret, err
 }
 
