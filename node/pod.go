@@ -69,7 +69,9 @@ func (pc *PodController) createOrUpdatePod(ctx context.Context, pod *corev1.Pod)
 		"namespace": pod.GetNamespace(),
 	})
 
-	fmt.Println(pc.resourceManager.GetSecret("my-secret", "default"))
+	fmt.Println("GOING TO GET THE SECRET my-secret")
+	secret, _ := pc.resourceManager.GetSecret("my-secret", "default")
+	fmt.Println("Secret: " + secret.Name)
 
 	// We do this so we don't mutate the pod from the informer cache
 	pod = pod.DeepCopy()
